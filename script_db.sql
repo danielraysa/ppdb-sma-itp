@@ -46,58 +46,6 @@ INSERT INTO `admin` (`username`, `password`, `nama`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `components`
---
-
-CREATE TABLE `components` (
-  `id_component` int(11) NOT NULL,
-  `konten` varchar(50) NOT NULL,
-  `isi` text NOT NULL,
-  `tanggal_update` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `components`
---
-
-INSERT INTO `components` (`id_component`, `konten`, `isi`, `tanggal_update`) VALUES
-(1, 'Visi Sekolah', '<p>Menjadi sekolah yang unggul dan tertib dalam proses pembelajaran.</p>\r\n', '2018-02-16'),
-(2, 'Misi Sekolah', '<ol>\r\n	<li>Menumbuhkan motivasi untuk selalu menjaga dan meningkatkan mutu pendidikan.</li>\r\n	<li>Meningkatkan prestasi di bidang olahraga dan seni.</li>\r\n	<li>Menciptakan dan mencetak lulusan yang cerdas, santun dan agamis.</li>\r\n	<li>Menjalin dan mengembangkan hubungan yang baik dengan instansi terkait.</li>\r\n</ol>\r\n', '2018-02-16'),
-(3, 'Email Sekolah', 'smaitp@gmail.com', '0000-00-00'),
-(4, 'Nomor Telepon Sekolah', '031-8950674', '0000-00-00'),
-(5, 'Alamat Sekolah', '<p>Jl. Dukuh Menanggal XII/4 Surabaya, Jawa Timur</p>\r\n', '2018-02-23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `gallery`
---
-
-CREATE TABLE `gallery` (
-  `id_gallery` int(11) NOT NULL,
-  `id_post` int(11) DEFAULT NULL,
-  `judul_gambar` varchar(50) NOT NULL,
-  `path` text NOT NULL,
-  `tanggal` datetime NOT NULL,
-  `tanggal_update` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `gallery`
---
-
-INSERT INTO `gallery` (`id_gallery`, `id_post`, `judul_gambar`, `path`, `tanggal`, `tanggal_update`) VALUES
-(1, 7, 'Tes Gambar Upload', '1518666589.jpg', '2018-02-15 04:49:48', '0000-00-00 00:00:00'),
-(2, 0, 'Testing Gambar 1', '33.jpg', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, NULL, 'Tambah Baru 1', '3.jpg', '2018-02-20 15:18:48', '2018-02-20 00:00:00'),
-(4, NULL, 'Tambah Baru 2', '11.jpg', '2018-02-20 15:18:48', '2018-02-20 00:00:00'),
-(5, 10, 'Halaman Baru Fresh', '1514291408549.jpg', '2018-02-20 15:45:22', '0000-00-00 00:00:00'),
-(6, 11, 'dasda', 'aa.png', '2018-02-20 16:54:54', '2018-02-25 00:11:28'),
-(7, 13, 'NEW BARUU', 'Youth Choir Fest2016_791.jpg', '2018-02-25 00:31:53', '2018-02-25 00:31:53');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `ortu_wali`
 --
 
@@ -211,36 +159,6 @@ INSERT INTO `penilaian` (`IDPENDAFTAR`, `STATUSSELEKSI`, `NILAI`, `CATATAN`, `TA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
---
-
-CREATE TABLE `posts` (
-  `id_post` int(11) NOT NULL,
-  `author` varchar(30) NOT NULL,
-  `judul` text NOT NULL,
-  `isi` longtext NOT NULL,
-  `link` text NOT NULL,
-  `tanggal_post` datetime NOT NULL,
-  `tanggal_update` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id_post`, `author`, `judul`, `isi`, `link`, `tanggal_post`, `tanggal_update`) VALUES
-(1, 'Daniel Raysa Putra', 'Hello World', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\r\n', '', '2018-02-13 00:00:00', '2018-02-23 23:30:59'),
-(7, 'Daniel Raysa Putra', 'Tes Gambar Upload', '<p>This is new pages</p>\r\n', '', '2018-02-15 04:49:48', '2018-02-15 04:49:48'),
-(8, 'Daniel Raysa Putra', 'Tes Baru No Image', '<p>This is new page&nbsp;<strong>without image</strong></p>\r\n', '', '2018-02-16 20:37:54', '2018-02-16 20:37:54'),
-(9, 'Daniel Raysa Putra', 'New Page With Pages', '<p>Hello this is new pages with HTML pages</p>\r\n', '', '2018-02-16 21:31:03', '2018-02-16 21:31:03'),
-(10, 'Daniel Raysa Putra', 'Halaman Baru Fresh', '<p>Ini halaman baru dari update yang paling baru</p>\r\n', 'Halaman-Baru-Fresh.html', '2018-02-20 15:45:22', '2018-02-20 15:45:22'),
-(11, 'Daniel Raysa Putra', 'Page HAlaman Baru', '<p>ajdkahdjahsdjahb aksjdhkajshda ajsdhakshdkjashd</p>\r\n', 'Page-HAlaman-Baru.html', '2018-02-20 16:54:54', '2018-02-20 16:54:54'),
-(12, 'Anel Raysa', 'KIIIII HALLO', '<p>Youth Choir Fest 2017</p>\r\n', 'KIIIII-HALLO.html', '2018-02-25 00:24:50', '2018-02-25 00:24:50'),
-(13, 'Anel Raysa', 'NEW BARUU', '<p>YFC 2124567893213456fgs gs</p>\r\n', 'NEW-BARUU.php', '2018-02-25 00:31:53', '2018-02-25 00:31:53');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `siswa_baru`
 --
 
@@ -298,18 +216,6 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`username`);
 
 --
--- Indexes for table `components`
---
-ALTER TABLE `components`
-  ADD PRIMARY KEY (`id_component`);
-
---
--- Indexes for table `gallery`
---
-ALTER TABLE `gallery`
-  ADD PRIMARY KEY (`id_gallery`);
-
---
 -- Indexes for table `ortu_wali`
 --
 ALTER TABLE `ortu_wali`
@@ -331,8 +237,6 @@ ALTER TABLE `penilaian`
 --
 -- Indexes for table `posts`
 --
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id_post`);
 
 --
 -- Indexes for table `siswa_baru`
@@ -341,28 +245,6 @@ ALTER TABLE `siswa_baru`
   ADD PRIMARY KEY (`NOMORINDUK`),
   ADD KEY `FK_RELATIONSHIP_2` (`IDPENDAFTAR`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `components`
---
-ALTER TABLE `components`
-  MODIFY `id_component` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `gallery`
---
-ALTER TABLE `gallery`
-  MODIFY `id_gallery` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- Constraints for dumped tables
---
 
 --
 -- Constraints for table `ortu_wali`
