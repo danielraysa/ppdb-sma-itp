@@ -3,7 +3,7 @@
 	include '../koneksi.php';
 	setlocale (LC_TIME, 'INDONESIAN');
 	if (!isset ($_SESSION["username"]) || $_SESSION ["username"] != true){
-		header ("location: login.php?no-login");
+		header ("location: index.php?no-login");
 	  }
 ?>
 <!DOCTYPE html>
@@ -99,6 +99,7 @@
 						<li role="presentation" ><a href="jadwal-seleksi.php">Penjadwalan Seleksi</a></li>
 						<li role="presentation"><a href="seleksi.php">Seleksi</a></li>
                         <li role="presentation"><a href="penerimaan.php">Penerimaan</a></li>
+						<li role="presentation"><a href="laporan.php">Laporan</a></li>
                         <li role="presentation"><a href="logout.php">Logout</a></li>
 					</ul>
 				</div>
@@ -141,7 +142,7 @@
 		}
 		?>
 			<div class="row">
-				<div class="col-lg-8 col-md-8 col-sm-8">
+				<div class="col-lg-6 col-md-5 col-sm-5">
 					<form method="get" action="?cari='<?php echo $_GET['cari']; ?>'">
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-search"></i></span>
@@ -152,7 +153,29 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-lg-3 col-md-3 col-sm-3">
+				<div class="col-lg-4 col-md-4 col-sm-4">
+				<form method="get" action="?ta='<?php echo $_GET['ta']; ?>'">
+					<div class="input-group">
+						<span class="input-group-addon">
+							Tahun Ajaran
+						</span>
+						<select class="form-control" name="ta">
+							<?php
+							$que = mysqli_query($koneksi, "SELECT TAHUNAJARAN FROM pendaftar GROUP BY TAHUNAJARAN");
+							while ($feth = mysqli_fetch_array($que)) {
+							?>
+							<option value="<?php echo $feth['TAHUNAJARAN']; ?>"><?php echo $feth['TAHUNAJARAN']; ?></option>
+							<?php
+							}
+							?>
+						</select>
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="submit">Go!</button>
+						</span>
+					</div>
+				</form>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2">
 					<a target="_blank" href="cetak-list-pendaftar.php" class="btn btn-success" role="button">Cetak List Pendaftar</a>
 				<!-- <form method="post" action="cetak-list-pendaftar.php">
 						<button class="btn btn-success" type="submit">Cetak List Pendaftar</button>
@@ -180,6 +203,41 @@
 								$no = 1;
 								$nama = $_GET['cari'];
 								$query = mysqli_query($koneksi, "SELECT * FROM pendaftar WHERE IDPENDAFTAR LIKE '%".$nama."%' OR NAMAPENDAFTAR LIKE '%".$nama."%' OR SEKOLAHASAL LIKE '%".$nama."%'");
+								if (!$query) {
+									printf("Error: %s\n", mysqli_error($koneksi));
+									exit();
+								}
+								while ($loop = mysqli_fetch_array($query)) {
+							?>
+								<tr style="text-align: center;">
+								<td> <?php echo $no; ?> </td>
+								<td> <?php echo $loop['IDPENDAFTAR']; ?> </td>
+								<td> <?php echo $loop['NAMAPENDAFTAR']; ?> </td>
+								<td> <?php echo $loop['JENISKELAMIN']; ?> </td>
+								<td> <?php echo $loop['SEKOLAHASAL']; ?> </td>
+								<td> <?php echo strftime("%d %B %Y", strtotime($loop['TANGGALDAFTAR'])); ?> </td>
+								<td> <?php echo $loop['STATUSFORM']; ?> </td>
+								<td><?php 
+										if ($loop['STATUSFORM'] == 'Sudah Kembali') {
+										?>
+											<button type="button" name="kembali" class="btn btn-primary" disabled>Form Kembali</button></td>
+										<?php
+										}
+										else {
+										?>
+											<button type="button" name="kembali" class="btn btn-default feed-id" data-toggle="modal" data-target="#myModal" data-id="<?php echo $loop['IDPENDAFTAR']; ?>">Form Kembali</button></td>
+										<?php
+										}
+									 ?>
+								</tr>
+							<?php
+								$no++;
+								}
+							}
+							else if (isset($_GET['ta'])) {
+								$no = 1;
+								$nama = $_GET['ta'];
+								$query = mysqli_query($koneksi, "SELECT * FROM pendaftar WHERE TAHUNAJARAN = '".$nama."'");
 								if (!$query) {
 									printf("Error: %s\n", mysqli_error($koneksi));
 									exit();

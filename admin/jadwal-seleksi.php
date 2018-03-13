@@ -1,6 +1,10 @@
 <?php
     session_start();
-    include "../koneksi.php";
+	include '../koneksi.php';
+	setlocale (LC_TIME, 'INDONESIAN');
+	if (!isset ($_SESSION["username"]) || $_SESSION ["username"] != true){
+		header ("location: index.php?no-login");
+	  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +65,7 @@
 						<li role="presentation" class="active"><a href="jadwal-seleksi.php">Penjadwalan Seleksi</a></li>
 						<li role="presentation"><a href="seleksi.php">Seleksi</a></li>
                         <li role="presentation"><a href="penerimaan.php">Penerimaan</a></li>
+						<li role="presentation"><a href="laporan.php">Laporan</a></li>
                         <li role="presentation"><a href="logout.php">Logout</a></li>
 					</ul>
 				</div>

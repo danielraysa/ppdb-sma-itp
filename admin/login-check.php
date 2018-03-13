@@ -3,7 +3,7 @@ session_start();
 include '../koneksi.php';
 $cek = 0;
 if (isset($_POST['login'])) {
-    $query = mysqli_query($koneksi, "SELECT * FROM admin") or die(mysqli_error($koneksi));
+    $query = mysqli_query($koneksi, "SELECT * FROM admin WHERE username = '".$_POST['username']."'") or die(mysqli_error($koneksi));
     while ($loop = mysqli_fetch_array($query)) {
         if ($loop['username'] == $_POST['username'] && $loop['password'] == $_POST['password']) {
             $_SESSION['username'] = $_POST['username'];
@@ -12,12 +12,12 @@ if (isset($_POST['login'])) {
         }
     }
 }
-if ($cek = 1) {
-    header('location:list-pendaftar.php');
+if ($cek == 1) {
+    header("location:list-pendaftar.php");
 }
-else if ($cek = 0) {
+else {
     //die (mysqli_error($koneksi));
-    header('location:login.php?error');
+    header('location:?error');
 }
 
 ?>

@@ -1,6 +1,10 @@
 <?php
     session_start();
-    include "../koneksi.php";
+	include '../koneksi.php';
+	setlocale (LC_TIME, 'INDONESIAN');
+	if (!isset ($_SESSION["username"]) || $_SESSION ["username"] != true){
+		header ("location: index.php?no-login");
+	  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +19,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/wow.min.js"></script>
-	<script src="../js/jquery.easing.1.3.js"></script>
+	
 	<script src="../js/jquery.isotope.min.js"></script>
 	<script src="../js/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="../js/fliplightbox.min.js"></script>
@@ -62,6 +66,7 @@
 						<li role="presentation" ><a href="jadwal-seleksi.php">Penjadwalan Seleksi</a></li>
 						<li role="presentation" class="active"><a href="seleksi.php">Seleksi</a></li>
                         <li role="presentation"><a href="penerimaan.php">Penerimaan</a></li>
+						<li role="presentation"><a href="laporan.php">Laporan</a></li>
                         <li role="presentation"><a href="logout.php">Logout</a></li>
 					</ul>
 				</div>
@@ -83,8 +88,7 @@
 		</div>
 	</div>
 
-	<!-- <div class="portfolio"> -->
-		<div class="container">
+	<div class="container">
 		<?php
 		if (isset($_GET['success'])) {
 		?>
@@ -154,7 +158,7 @@
 					if (isset($_GET['nama'])) {
 						$no = 1;
 						$nama = $_GET['nama'];
-						$query = mysqli_query($koneksi, "SELECT * FROM penilaian p JOIN pendaftar pd ON p.IDPENDAFTAR = pd.IDPENDAFTAR WHERE p.NAMAPENDAFTAR LIKE '%".$nama."%'");
+						$query = mysqli_query($koneksi, "SELECT * FROM penilaian p JOIN pendaftar pd ON p.IDPENDAFTAR = pd.IDPENDAFTAR WHERE pd.NAMAPENDAFTAR LIKE '%".$nama."%'");
 						if (!$query) {
 							printf("Error: %s\n", mysqli_error($koneksi));
 							exit();
@@ -312,7 +316,7 @@
            		</div>
 			</div>
 		</div>
-	<!-- </div> -->
+	</div>
 
   <footer>
 		<div class="last-div">
@@ -339,10 +343,7 @@
 					</ul>
 				</div>
 			</div>
-
 			<a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
-
-
 		</div>
 	</footer>
 	<script type="text/javascript">
