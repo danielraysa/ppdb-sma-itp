@@ -32,7 +32,7 @@
 	<![endif]-->
 	<style type="text/css">
 		#chart-container {
-			width: 50%;
+			width: 100%;
 			height: auto;
 		}
 	</style>
@@ -72,7 +72,7 @@
 				<div class="portfolios">
 					<div class="text-center">
 						<h2>Laporan Calon Peserta Didik Baru</h2>
-						<p>Apabila <strong>status daftar ulang (baik form siswa baru dan biaya administrasi) telah terpenuhi</strong>, peserta didik baru diberikan nomor induk siswa.</p>
+						<p>Berikut ini adalah hasil rekap data pendaftar beserta grafiknya.</p>
 					</div>
 		
 				</div>
@@ -82,26 +82,8 @@
 	<hr>
 	<!-- <div class="portfolio"> -->
 		<div class="container">
-		<?php
-		if (isset($_GET['success'])) {
-		?>
-			<div class="alert alert-success alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<center><strong>Berhasil menyimpan data.</strong></center>
-			</div>
-		<?php
-		}
-		if (isset($_GET['error'])) {
-			?>
-			<div class="alert alert-danger alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<center><strong>Ada kesalahan!</strong></center>
-			</div>
-		<?php
-			}
-		?>
 			<div class="row">
-				<div class="col-lg-4 col-md-4 col-sm-4">
+				<div class="col-lg-4 col-md-6 col-sm-6">
 					<form method="get" action="?ta='<?php echo $_GET['ta']; ?>'">
 						<div class="input-group">
 							<span class="input-group-addon">
@@ -118,7 +100,7 @@
 								?>
 							</select>
 							<span class="input-group-btn">
-								<button class="btn btn-success" type="submit">Go!</button>
+								<button class="btn btn-success" id="tahunajar" type="submit">Go!</button>
 							</span>
 						</div>
 					</form>
@@ -126,17 +108,17 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="col-lg-6 col-md-12 col-sm-12">
 					<div id="chart-container">
 						<canvas id="mycanvas"></canvas>
 					</div>
-					<!-- <div id="chart-container">
+				</div>
+				<div class="col-lg-6 col-md-12 col-sm-12">
+					<div id="chart-container">
 						<canvas id="myChart"></canvas>
-					</div> -->
+					</div>
 				</div>
 			</div>
-			
-			
 		</div>
 	<!-- </div> -->
 
@@ -177,19 +159,28 @@
 	<script src="../js/jquery.easing.1.3.js"></script>
 	<script src="../js/jquery.isotope.min.js"></script>
 	<script src="../js/jquery.bxslider.min.js"></script>
-	<script type="text/javascript" src="../js/fliplightbox.min.js"></script>
+	
 	<script src="../js/functions.js"></script>
-	<script type="text/javascript">$('.portfolio').flipLightBox()</script>
+	
 	<script type="text/javascript">
 	$(document).ready(function () {
 		$('body').on('click', '.feed-id',function(){
 			document.getElementById("feed_id").value = $(this).attr('data-id');
 			console.log($(this).attr('data-id'));
 		});
+		var head = document.getElementsByTagName('head')[0];
+		var js = document.createElement("script");
+		if ($('#tahunajar').click) {
+			js.src = "data-chart-x.js";
+		}
+		else {
+			js.src = "data-chart.js";
+		}
+		head.appendChild(js);
 	});
 	</script>
 	<!-- javascript -->
 	<script type="text/javascript" src="../js/chart.js"></script>
-	<script type="text/javascript" src="data-chart.js"></script>
+	<!-- <script type="text/javascript" src="data-chart.js"></script> -->
   </body>
 </html>

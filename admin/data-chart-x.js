@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-        url: "data.php",
+        url: "data.php?ta=2018%2F2019",
         method: "GET",
         success: function(data) {
             console.log(data);
@@ -45,7 +45,7 @@ $(document).ready(function(){
         }
     });
     $.ajax({
-        url: "data-pie.php",
+        url: "data-pie.php?ta=2018%2F2019",
         method: "GET",
         success: function(data) {
             console.log(data);

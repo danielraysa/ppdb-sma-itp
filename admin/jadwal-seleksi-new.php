@@ -101,47 +101,50 @@
 		<?php
 		}
 		?>
+    <form class="form-horizontal" method="post" action="buat-jadwal.php">
     <div class="row">
-        <form class="form-horizontal" method="post" action="buat-jadwal.php">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="bootstrap-iso">
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">Jumlah Sesi Wawancara Per Hari</label>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <input type="number" name="jumlah" class="form-control" id="inputEmail3" placeholder="Jumlah Pendaftar yang akan diwawancara dalam 1 hari" required>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="input-group">
-								<div class='input-group date' id='datepicker'>
-									<span class="input-group-addon">
-									<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-									<input type="text" placeholder="Tanggal Seleksi Awal" name="tanggalseleksi" ng-model="form.tanggal" class="form-control">
-								</div>
-							</div>
-						</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-3 control-label">Jumlah Penilai/Pewawancara Per Sesi</label>
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            <input type="number" name="jumlah" class="form-control" id="inputEmail3" placeholder="Jumlah Pendaftar yang akan diwawancara dalam 1 hari" required>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-							<div class="input-group">
-								<div class='input-group date' id='datepicker1'>
-									<span class="input-group-addon">
-									<span class="glyphicon glyphicon-calendar"></span>
-									</span>
-									<input type="text" placeholder="Tanggal Seleksi Akhir" name="tanggalseleksi" ng-model="form.tanggal" class="form-control">
-								</div>
-							</div>
-						</div>
-                    </div>
-                    
-                </div>
-            </div>
-        </form>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Jumlah Sesi Wawancara Per Hari</label>
+			<div class="col-lg-5 col-md-5 col-sm-5">
+				<input type="number" name="jumlah" class="form-control" id="inputEmail3" placeholder="Jumlah Pendaftar yang akan diwawancara dalam 1 hari" required>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<div class="input-group">
+					<div class='input-group date' id='datepicker'>
+						<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+						<input type="text" placeholder="Tanggal Seleksi Awal" name="tanggalseleksi" ng-model="form.tanggal" class="form-control">
+					</div>
+				</div>
+			</div>
+		</div>
+        
     </div>
+	<div class="row">
+		<div class="bootstrap-iso">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Jumlah Penilai/Pewawancara Per Sesi</label>
+				<div class="col-lg-5 col-md-5 col-sm-5">
+					<input type="number" name="jumlah" class="form-control" id="inputEmail3" placeholder="Jumlah Pendaftar yang akan diwawancara dalam 1 hari" required>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<div class="input-group">
+						<div class='input-group date' id='datepicker1'>
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+							</span>
+							<input type="text" placeholder="Tanggal Seleksi Akhir" name="tanggalseleksi" ng-model="form.tanggal" class="form-control">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<button type="submit" class="btn btn-success" name="kirim" >Jadwalkan!</button>
+	</div>
+	</form>
 	<div class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12">
 			<div class="table-responsive">		

@@ -16,15 +16,13 @@ if(!$mysqli){
 }
 
 if (isset($_GET['ta'])) {
-	$query = sprintf("SELECT MONTH(TANGGALDAFTAR) as bulan, COUNT(*) as jumlah FROM pendaftar WHERE TAHUNAJARAN = '".$_GET['ta']."' GROUP BY MONTH(TANGGALDAFTAR)");
+$query = sprintf("SELECT JENISKELAMIN as jk, COUNT(*) as jumlah FROM pendaftar WHERE TAHUNAJARAN = '".$_GET['ta']."' GROUP BY JENISKELAMIN");
 }
 else {
-	$query = sprintf("SELECT MONTH(TANGGALDAFTAR) as bulan, COUNT(*) as jumlah FROM pendaftar GROUP BY MONTH(TANGGALDAFTAR)");
+$query = sprintf("SELECT JENISKELAMIN as jk, COUNT(*) as jumlah FROM pendaftar GROUP BY JENISKELAMIN");
 }
-
 //execute query
 $result = $mysqli->query($query);
-
 
 //loop through the returned data
 $data = array();
@@ -40,5 +38,5 @@ $mysqli->close();
 
 //now print the data
 print json_encode($data);
-//print json_encode($data1);
+
 ?>
