@@ -168,19 +168,23 @@
 			document.getElementById("feed_id").value = $(this).attr('data-id');
 			console.log($(this).attr('data-id'));
 		});
-		var head = document.getElementsByTagName('head')[0];
-		var js = document.createElement("script");
-		if ($('#tahunajar').click) {
-			js.src = "data-chart-x.js";
-		}
-		else {
-			js.src = "data-chart.js";
-		}
-		head.appendChild(js);
-	});
+		
+		// var js = document.createElement("script");
+		// $('#tahunajar').click(function(){
+		// 	$(this).data('clicked', true);
+		// 	if ($('#tahunajar').data('clicked')) {
+		// 		alert("clicked");
+		// 		js.src = "data-chart-x.js";
+		// 	}
+		// 	else {
+		// 		js.src = "data-chart.js";
+		// 	}
+		// 	});
+		// $('body').append(js);
+		});
 	</script>
 	<!-- javascript -->
 	<script type="text/javascript" src="../js/chart.js"></script>
-	<!-- <script type="text/javascript" src="data-chart.js"></script> -->
+	<script type="text/javascript" src="data-chart.js"></script>
   </body>
 </html>

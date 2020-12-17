@@ -122,15 +122,19 @@
 								<td> Action </td>
 							</tr>
 							<?php
+								$no = 1;
 								if (isset($_GET['nama'])) {
-									$no = 1;
 									$nama = $_GET['nama'];
 									$query = mysqli_query($koneksi, "SELECT * FROM penilaian p JOIN pendaftar pd ON p.IDPENDAFTAR = pd.IDPENDAFTAR WHERE p.STATUSSELEKSI = 'Sudah' AND pd.NAMAPENDAFTAR LIKE '%".$nama."%'");
 									if (!$query) {
 										printf("Error: %s\n", mysqli_error($koneksi));
 										exit();
 									}
-									while ($loop = mysqli_fetch_array($query)) {
+								}
+								else{
+									$query = mysqli_query($koneksi, "SELECT * FROM penilaian p JOIN pendaftar pd ON p.IDPENDAFTAR = pd.IDPENDAFTAR WHERE p.STATUSSELEKSI = 'Sudah'");
+								}
+								while ($loop = mysqli_fetch_array($query)) {
 								?>
 								<tr style="text-align: center;">
 								<td> <?php echo $no; ?> </td>
@@ -165,45 +169,6 @@
 							<?php
 								$no++;
 								}
-							}
-							else {
-								$no = 1; 
-								$query = mysqli_query($koneksi, "SELECT * FROM penilaian p JOIN pendaftar pd ON p.IDPENDAFTAR = pd.IDPENDAFTAR WHERE p.STATUSSELEKSI = 'Sudah'");
-								while ($loop = mysqli_fetch_array($query)) {
-							?>
-								<tr style="text-align: center;">
-								<td> <?php echo $no; ?> </td>
-								<td> <?php echo $loop['IDPENDAFTAR']; ?> </td>
-								<td> <?php echo $loop['NAMAPENDAFTAR']; ?> </td>								
-								<td><?php echo $loop['SEKOLAHASAL']; ?> </td>
-								<td> <?php echo $loop['LOLOS']; ?> </td>
-								<td> <?php 
-										$check = "SELECT NOMORINDUK FROM siswa_baru WHERE IDPENDAFTAR = '".$loop['IDPENDAFTAR']."'";
-										$rs = mysqli_query($koneksi, $check);
-										$data = mysqli_fetch_array($rs);
-										if($data['NOMORINDUK'] != "") {
-											echo "Sudah Teregistrasi";
-										}
-										else {
-											echo "Belum Teregistrasi";
-										}
-									 ?>
-								</td>
-								<td> <?php
-								if($data[0] > 1) {
-									?> <button type="button" name="nilaibutton" class="btn btn-danger feed-id" disabled>Beri Nomor Induk</button></td>
-									<?php
-								}
-								else {
-									?> <button type="button" name="nilaibutton" class="btn btn-danger feed-id" data-toggle="modal" data-target="#myModal" data-id="<?php echo $loop['IDPENDAFTAR']; ?>">Beri Nomor Induk</button></td>
-									<?php
-								}
-								?>
-								</tr>
-							<?php
-								$no++;
-								}
-							}
 							?>
 						</table>
 					</div>
